@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         console.log(data); // Handle the response data
-        // Additional logic to handle response
+        window.location.reload(true);
       })
       .catch((error) => {
         console.error("Error:", error); // Handle any errors
