@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Active Link</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <p>The link is active!</p>
+    <div class="container">
+    {% for image in images %}
+        <img src="{{ url_for('static', filename='images/' + link_id + '/' + image) }}" class="img-fluid m-3">
+    {% endfor %}
+</div>
+</body>
+</html>
