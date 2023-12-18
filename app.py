@@ -25,11 +25,19 @@ def index():
     for link_id, link_info in links.items():
         status = "Active" if current_time < strp_time(link_info['expiration']) else "Expired"
         remaining_time = strp_time(link_info['expiration']) - current_time if status == "Active" else datetime.timedelta(0)
+        #  if remaining_time is days, then only send days, if hours then only send hours, if minutes then only send minutes
+        remaining_time = ""
+        if remaining_time.days > 0:
+            remaining_time += f"{remaining_time.days} days"
+        if remaining_time.seconds // 3600 > 0:
+            remaining_time += f"{remaining_time.seconds // 3600} hours"
+        if remaining_time.seconds // 60 > 0:
+            remaining_time += f"{remaining_time.seconds // 60} minutes"
         link_data.append({
             'id': link_id,
             'title': link_info['title'],
             'status': status,
-            'remaining_time': str(remaining_time).split('.')[0]  # Format the time delta as a string
+            'remaining_time': remaining_time,
         })
 
     return render_template('index.html', links=link_data)
